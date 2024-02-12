@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
-import { Button } from "@material-tailwind/react";
+import LoginPage from "./pages/Authentication/LoginPage";
+import SignupPage from "./pages/Authentication/SignupPage";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button>Button</Button>
+      <LoginPage />
+      {/* <SignupPage /> */}
     </>
   );
 }
