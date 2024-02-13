@@ -3,7 +3,11 @@ import GaugeComponent from "react-gauge-component";
 
 function GaugeMeter() {
   return (
-    <div style={{ width: "600px", height: "200px" }}>
+    <div
+      className="flex flex-col justify-center"
+      style={{ width: "400px", height: "240px" }}
+    >
+      <h1 className="pl-10 font-bold text-lg">Temperature</h1>
       <GaugeComponent
         type="semicircle"
         arc={{

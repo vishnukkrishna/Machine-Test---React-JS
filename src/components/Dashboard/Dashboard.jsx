@@ -13,7 +13,6 @@ function Dashboard() {
     navigate("/");
   };
 
-  
   return (
     <>
       <div className="bg-gray-50/50">
@@ -121,7 +120,7 @@ function Dashboard() {
             </div>
           </nav>
           <div className="mt-12">
-            <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
               <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
                 <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
                   <svg
@@ -145,7 +144,7 @@ function Dashboard() {
                     Today's Weather
                   </p>
                   <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    $53k
+                    34ºC
                   </h4>
                 </div>
                 <div className="border-t border-blue-gray-50 p-4">
@@ -200,7 +199,7 @@ function Dashboard() {
                 </div>
                 <div className="p-4 text-right">
                   <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                    New Clients
+                    Datas
                   </p>
                   <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
                     3,462
@@ -227,10 +226,10 @@ function Dashboard() {
                 </div>
                 <div className="p-4 text-right">
                   <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                    Sales
+                    Temperature
                   </p>
                   <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    $103,430
+                    43ºC
                   </h4>
                 </div>
                 <div className="border-t border-blue-gray-50 p-4">
@@ -249,7 +248,7 @@ function Dashboard() {
             <div className="w-full md:w-1/2">
               <PieChart />
             </div>
-            <div>
+            <div className="">
               <GaugeMeter />
             </div>
           </div>
