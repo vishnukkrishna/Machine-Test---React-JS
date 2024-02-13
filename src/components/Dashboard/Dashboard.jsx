@@ -12,6 +12,8 @@ function Dashboard() {
     localStorage.removeItem("token");
     navigate("/");
   };
+
+  
   return (
     <>
       <div className="bg-gray-50/50">
