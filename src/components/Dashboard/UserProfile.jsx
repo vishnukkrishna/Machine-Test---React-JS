@@ -138,12 +138,12 @@ function UserProfile() {
               </div>
             </div>
           </nav>
-          <div className="pt-32 flex flex-wrap justify-center sm:gap-20 md:gap-40 lg:gap-0 gap-0">
+          <div className="flex pt-10 flex-wrap justify-center sm:gap-20 md:gap-40 lg:gap-0 gap-0">
             {UserList &&
               UserList.map((user) => (
                 <div
                   key={user.id}
-                  className="font-sans flex flex-row w-full sm:w-1/2 lg:w-1/3 justify-center items-center"
+                  className="font-sans pt-28 flex flex-row w-full sm:w-1/2 lg:w-1/3 justify-center items-center"
                 >
                   <div className="card w-96 mx-auto bg-white shadow-xl hover:shadow">
                     <img
