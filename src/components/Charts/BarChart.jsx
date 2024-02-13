@@ -81,13 +81,13 @@ function BarChart() {
 
         <div x-data="app()" x-cloak className="px-4 p-20">
           <div className="max-w-lg mx-auto py-10">
-            <div className="shadow p-6 rounded-lg bg-white">
+            <div className=" p-6 rounded-lg bg-white">
               <div className="md:flex md:justify-between md:items-center">
                 <div>
                   <h2 className="text-xl text-gray-800 font-bold leading-tight">
                     Weather
                   </h2>
-                  <p className="mb-2 text-gray-600 text-sm">Monthly Average</p>
+                  <p className="mb-2 text-gray-600 text-sm">Rainy Days</p>
                 </div>
 
                 <div className="mb-4">

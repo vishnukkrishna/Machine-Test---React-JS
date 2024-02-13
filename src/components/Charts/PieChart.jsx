@@ -33,9 +33,9 @@ function PieChart() {
   }, []);
 
   return (
-    <div className="w-full  px-4">
+    <div className="w-full px-4">
       <div className="rounded-lg overflow-hidden">
-        <div className="py-7 px-2 ">Pie chart</div>
+        <div className="py-7 px-2 text-lg font-bold">Rainy Seasons</div>
         <div
           style={{ position: "relative", width: "90%", paddingBottom: "100%" }}
         >
