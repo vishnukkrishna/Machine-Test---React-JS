@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./UserHome.css";
-// import Navbar from "../Authentication/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function UserHome() {
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
   const [error, setError] = useState("");
 
   const apiKey = "78f6b87e87d905303d2a498fde1bc61f";
+
+  const Logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
@@ -38,10 +44,9 @@ function UserHome() {
   };
   return (
     <>
-      {/* <Navbar /> */}
       <div className="app">
         <div className="logout-container">
-          <button>Logout</button>
+          <button onClick={Logout}>Logout</button>
         </div>
         <div className="search">
           <input

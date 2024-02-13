@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+import { useNavigate } from "react-router-dom";
 
 function Settings() {
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
+
+  const Logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <>
       <div className="bg-gray-50/50">
@@ -70,6 +77,7 @@ function Settings() {
                   <button
                     className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 hidden items-center gap-1 px-4 xl:flex"
                     type="button"
+                    onClick={Logout}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

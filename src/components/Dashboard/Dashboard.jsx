@@ -1,7 +1,17 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import BarChart from "../Charts/BarChart";
+import PieChart from "../Charts/PieChart";
+import GaugeMeter from "../Charts/GaugeMeter";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const Logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <>
       <div className="bg-gray-50/50">
@@ -67,6 +77,7 @@ function Dashboard() {
                   <button
                     className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 hidden items-center gap-1 px-4 xl:flex"
                     type="button"
+                    onClick={Logout}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +140,7 @@ function Dashboard() {
                 </div>
                 <div className="p-4 text-right">
                   <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                    Today's Money
+                    Today's Weather
                   </p>
                   <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
                     $53k
@@ -227,6 +238,17 @@ function Dashboard() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center">
+            <div className="w-full md:w-1/2 px-4">
+              <BarChart />
+            </div>
+            <div className="w-full md:w-1/2">
+              <PieChart />
+            </div>
+            <div>
+              <GaugeMeter />
             </div>
           </div>
         </div>

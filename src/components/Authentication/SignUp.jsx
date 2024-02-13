@@ -2,34 +2,49 @@ import React, { useState } from "react";
 import { BACKEND_BASE_URL } from "../../api/Api";
 import { Link, useNavigate } from "react-router-dom";
 
+// Formic
+import { useFormik } from "formik";
+import { RegisterSchema } from "../../Formic/Validations";
+import { ToastError, ToastSuccess } from "../../ToastService/ToastService";
+import axios from "axios";
+
 function SignUp() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const history = useNavigate();
-
-  const signupSubmit = async (e) => {
-    e.preventDefault();
-
-    const response = await fetch(`${BACKEND_BASE_URL}/api/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-      }),
+  const initialValues = {
+    username: "",
+    email: "",
+    password: "",
+  };
+  const { values, errors, touched, handleBlur, handleSubmit, handleChange } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: RegisterSchema,
+      onSubmit: (values, { setSubmitting }) => {
+        RegisterhandleSubmitForm(values, setSubmitting);
+      },
     });
 
-    // const content = await response.json()
-    console.log(response);
-    if (response.status === 400) {
-      toast.error("Enter some details");
-      await history("/register");
-    } else {
-      await history("/login");
+  const RegisterhandleSubmitForm = async (values, setSubmitting) => {
+    try {
+      const response = await axios.post(
+        `${BACKEND_BASE_URL}/api/register/`,
+        values
+      );
+      if (response.status === 201) {
+        ToastSuccess(response.data?.msg || "Registration compleated");
+        navigate("/login/");
+      }
+    } catch (error) {
+      ToastError(
+        error.response?.data?.email[0] ||
+          error.response?.data?.username[0] ||
+          error.response?.data?.password[0] ||
+          "An error occurred"
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
   return (
@@ -53,7 +68,7 @@ function SignUp() {
           <div className="p-12 bg-white mx-auto rounded-3xl w-96">
             <div className="mb-7">
               <h3 className="font-semibold text-3xl text-gray-800">Sign Up</h3>
-              <p className="text-gray-400 pt-3">
+              <p className="text-gray-400 pt-3 text-base">
                 Don't have an account?
                 <Link
                   to="/login"
@@ -64,7 +79,7 @@ function SignUp() {
               </p>
             </div>
             <div className="space-y-6">
-              <form onSubmit={signupSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div>
                   <div className="">
                     <input
@@ -72,9 +87,15 @@ function SignUp() {
                       type="text"
                       name="username"
                       placeholder="Username"
-                      onChange={(e) => setUsername(e.target.value)}
-                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.username}
                     />
+                    {touched.username && errors.username && (
+                      <div className="text-red-500 text-sm ">
+                        {errors.username}
+                      </div>
+                    )}
                   </div>
                   <div className="pt-3">
                     <input
@@ -82,20 +103,32 @@ function SignUp() {
                       type="email"
                       name="email"
                       placeholder="Email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
                     />
+                    {touched.email && errors.email && (
+                      <div className="text-red-500 text-sm ">
+                        {errors.email}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="relative pt-3" x-data="{ show: true }">
                   <input
                     name="password"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
                     type={showPassword ? "text" : "password"}
                     className="text-sm text-gray-800 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
                   />
+                  {touched.password && errors.password && (
+                    <div className="text-red-500 text-sm ">
+                      {errors.password}
+                    </div>
+                  )}
                   <div className="flex items-center absolute inset-y-0 right-0 mr-3 text-sm leading-5">
                     <svg
                       onClick={() => setShowPassword(!showPassword)}
@@ -130,7 +163,6 @@ function SignUp() {
                 <div className="pt-5">
                   <button
                     type="submit"
-                    value="SIGNUP"
                     className="w-full flex justify-center bg-purple-800 hover:bg-purple-700 text-gray-100 p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-500"
                   >
                     Sign Up

@@ -7,7 +7,7 @@ function Sidebar() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  
+
   return (
     <div>
       <aside
@@ -88,7 +88,7 @@ function Sidebar() {
                     />
                   </svg>
                   <p className="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
-                    profile
+                    User List
                   </p>
                 </button>
               </Link>
